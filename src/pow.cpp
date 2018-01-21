@@ -107,6 +107,6 @@ LogPrintf("check range false\n");
 LogPrintf("check matches claimed amount pow.cpp107\nhash=%s\nbnTarget=%s\nnbits=%d\n",UintToArith256(hash).ToString(),bnTarget.ToString(),nBits);
     //    return false;
 	return true;
-}
+	}
     return true;
 }

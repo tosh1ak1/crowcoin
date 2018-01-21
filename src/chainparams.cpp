@@ -79,8 +79,8 @@ public:
         consensus.BIP34Hash = uint256S("0"); //uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf")
         consensus.BIP65Height = -1;//918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
         consensus.BIP66Height = -1;//811879; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
-        consensus.powLimit = uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-//uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
+        //consensus.powLimit = uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
         consensus.nPowTargetTimespan = 1.0 * 24 * 60 * 60; // 3.5 days to 1days
         consensus.nPowTargetSpacing = 1.0 * 60; //1 minuits
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -132,6 +132,7 @@ public:
         //vSeeds.emplace_back("dnsseed.crowcointools.com", true);
         //vSeeds.emplace_back("dnsseed.crowcoinpool.org", true);
         //vSeeds.emplace_back("dnsseed.koin-project.com", false);
+		//vSeeds.emplace_back("153.126.131.68", true);
 
        // base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48);
  		base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);

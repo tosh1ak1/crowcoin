@@ -236,7 +236,7 @@ uint32_t arith_uint256::GetCompact(bool fNegative) const
     // The 0x00800000 bit denotes the sign.
     // Thus, if it is already set, divide the mantissa by 256 and increase the exponent.
     if (nCompact & 0x00800000) {
-        nCompact >>= 0;//8;
+        nCompact >>= 8;
         nSize++;
     }
     //assert((nCompact & ~0x007fffff) == 0);
