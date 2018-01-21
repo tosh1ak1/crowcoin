@@ -525,8 +525,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/litecoin-project/litecoin>";
-    const std::string URL_WEBSITE = "<https://litecoin.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/crowcoin-project/crowcoin>";
+    const std::string URL_WEBSITE = "<https://crowcoin.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2011, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -681,9 +681,11 @@ void ThreadImport(std::vector<fs::path> vImportFiles)
     }
 
     // scan for better chains in the block chain database, that are not yet connected in the active best chain
+LogPrintf("init\n");
     CValidationState state;
+LogPrintf("init.cpp,ActiveBestChaincheck\n");
     if (!ActivateBestChain(state, chainparams)) {
-        LogPrintf("Failed to connect best block");
+        LogPrintf("Failed to connect best block init.cpp\n");
         StartShutdown();
     }
 
@@ -1372,7 +1374,7 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
     }
 
     // ********************************************************* Step 7: load block chain
-
+	LogPrintf("Step 7\n");
     fReindex = gArgs.GetBoolArg("-reindex", false);
     bool fReindexChainState = gArgs.GetBoolArg("-reindex-chainstate", false);
 
@@ -1574,6 +1576,7 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
     fFeeEstimatesInitialized = true;
 
     // ********************************************************* Step 8: load wallet
+	LogPrintf("Step 8\n");
 #ifdef ENABLE_WALLET
     if (!CWallet::InitLoadWallet())
         return false;
@@ -1582,7 +1585,7 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
 #endif
 
     // ********************************************************* Step 9: data directory maintenance
-
+	LogPrintf("Step 9\n");
     // if pruning, unset the service bit and perform the initial blockstore prune
     // after any wallet rescanning has taken place.
     if (fPruneMode) {
@@ -1607,18 +1610,19 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
     }
 
     // ********************************************************* Step 10: import blocks
-
+	LogPrintf("Step 10\n");
     if (!CheckDiskSpace())
         return false;
 
     // Either install a handler to notify us when genesis activates, or set fHaveGenesis directly.
     // No locking, as this happens before any background thread is started.
+	//LogPrintf("chainActive\n");
     if (chainActive.Tip() == nullptr) {
         uiInterface.NotifyBlockTip.connect(BlockNotifyGenesisWait);
     } else {
         fHaveGenesis = true;
     }
-
+	//LogPrintf("blocknotify\n");
     if (gArgs.IsArgSet("-blocknotify"))
         uiInterface.NotifyBlockTip.connect(BlockNotifyCallback);
 
@@ -1628,18 +1632,22 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
     }
 
     threadGroup.create_thread(boost::bind(&ThreadImport, vImportFiles));
-
+	//LogPrintf("genesis\n");
     // Wait for genesis block to be processed
     {
+		LogPrintf("boost\n");
         boost::unique_lock<boost::mutex> lock(cs_GenesisWait);
+		LogPrintf("while\n");
         while (!fHaveGenesis) {
+		LogPrintf("condvar\n");
             condvar_GenesisWait.wait(lock);
         }
+		LogPrintf("NotifyBlockTip\n");
         uiInterface.NotifyBlockTip.disconnect(BlockNotifyGenesisWait);
     }
-
+	LogPrintf("step 10 \n");
     // ********************************************************* Step 11: start node
-
+	LogPrintf("Step 11\n");
     //// debug print
     LogPrintf("mapBlockIndex.size() = %u\n",   mapBlockIndex.size());
     LogPrintf("nBestHeight = %d\n",                   chainActive.Height());
@@ -1701,7 +1709,7 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
     }
 
     // ********************************************************* Step 12: finished
-
+	LogPrintf("Step 12\n");
     SetRPCWarmupFinished();
     uiInterface.InitMessage(_("Done loading"));
 

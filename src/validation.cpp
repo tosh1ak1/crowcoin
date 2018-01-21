@@ -839,7 +839,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         // Remove conflicting transactions from the mempool
         for (const CTxMemPool::txiter it : allConflicting)
         {
-            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s LTC additional fees, %d delta bytes\n",
+            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s CROW additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -938,6 +938,7 @@ bool GetTransaction(const uint256 &hash, CTransactionRef &txOut, const Consensus
 
     if (pindexSlow) {
         CBlock block;
+//LogPrintf("GetTransaction\n");
         if (ReadBlockFromDisk(block, pindexSlow, consensusParams)) {
             for (const auto& tx : block.vtx) {
                 if (tx->GetHash() == hash) {
@@ -986,7 +987,6 @@ static bool WriteBlockToDisk(const CBlock& block, CDiskBlockPos& pos, const CMes
 bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParams)
 {
     block.SetNull();
-
     // Open history file to read
     CAutoFile filein(OpenBlockFile(pos, true), SER_DISK, CLIENT_VERSION);
     if (filein.IsNull())
@@ -1001,9 +1001,10 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     }
 
     // Check the header
-    if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
-
+    if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams)){
+LogPrintf("\nPoWHash=%s\nnbits=%d\nnNonce=%d\nnTime=%d",block.GetPoWHash().ToString(),block.nBits,block.nNonce,block.nTime);
+        return error("ReadBlockFromDisk: Errors in block header at %s\n ProofOFW is false in validation.cpp1006", pos.ToString());
+	}
     return true;
 }
 
@@ -1024,7 +1025,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings >= 64)
         return 0;
 
-    CAmount nSubsidy = 50 * COIN;
+    CAmount nSubsidy = 9.51 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
     return nSubsidy;
@@ -1385,7 +1386,7 @@ bool AbortNode(const std::string& strMessage, const std::string& userMessage="")
     SetMiscWarning(strMessage);
     LogPrintf("*** %s\n", strMessage);
     uiInterface.ThreadSafeMessageBox(
-        userMessage.empty() ? _("Error: A fatal internal error occurred, see debug.log for details") : userMessage,
+        userMessage.empty() ? _("Error: A fatal internal error in validation.cpp occurred, see debug.log for details") : userMessage,
         "", CClientUIInterface::MSG_ERROR);
     StartShutdown();
     return false;
@@ -2065,7 +2066,7 @@ bool static DisconnectTip(CValidationState& state, const CChainParams& chainpara
     std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>();
     CBlock& block = *pblock;
     if (!ReadBlockFromDisk(block, pindexDelete, chainparams.GetConsensus()))
-        return AbortNode(state, "Failed to read block");
+        return AbortNode(state, "Failed to read block DisconnectTip");
     // Apply the block atomically to the chain state.
     int64_t nStart = GetTimeMicros();
     {
@@ -2187,12 +2188,14 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
     std::shared_ptr<const CBlock> pthisBlock;
     if (!pblock) {
         std::shared_ptr<CBlock> pblockNew = std::make_shared<CBlock>();
+LogPrintf("connectTip pblock is null\n");
         if (!ReadBlockFromDisk(*pblockNew, pindexNew, chainparams.GetConsensus()))
-            return AbortNode(state, "Failed to read block");
+            return AbortNode(state, "Failed to read block in Connect Tip");
         pthisBlock = pblockNew;
     } else {
         pthisBlock = pblock;
     }
+//LogPrintf("connectTipReadBlock is OK\n");
     const CBlock& blockConnecting = *pthisBlock;
     // Apply the block atomically to the chain state.
     int64_t nTime2 = GetTimeMicros(); nTimeReadFromDisk += nTime2 - nTime1;
@@ -2336,6 +2339,7 @@ static bool ActivateBestChainStep(CValidationState& state, const CChainParams& c
         int nTargetHeight = std::min(nHeight + 32, pindexMostWork->nHeight);
         vpindexToConnect.clear();
         vpindexToConnect.reserve(nTargetHeight - nHeight);
+LogPrintf("ABCS getancestor nTargetHeight=%d\n",nTargetHeight);
         CBlockIndex *pindexIter = pindexMostWork->GetAncestor(nTargetHeight);
         while (pindexIter && pindexIter->nHeight != nHeight) {
             vpindexToConnect.push_back(pindexIter);
@@ -2344,6 +2348,7 @@ static bool ActivateBestChainStep(CValidationState& state, const CChainParams& c
         nHeight = nTargetHeight;
 
         // Connect new blocks.
+LogPrintf("ActiveBestChainStep\n");
         for (CBlockIndex *pindexConnect : reverse_iterate(vpindexToConnect)) {
             if (!ConnectTip(state, chainparams, pindexConnect, pindexConnect == pindexMostWork ? pblock : std::shared_ptr<const CBlock>(), connectTrace, disconnectpool)) {
                 if (state.IsInvalid()) {
@@ -2445,6 +2450,7 @@ bool ActivateBestChain(CValidationState &state, const CChainParams& chainparams,
 
             bool fInvalidFound = false;
             std::shared_ptr<const CBlock> nullBlockPtr;
+LogPrintf("ActivateBestChain\n");
             if (!ActivateBestChainStep(state, chainparams, pindexMostWork, pblock && pblock->GetHash() == pindexMostWork->GetBlockHash() ? pblock : nullBlockPtr, fInvalidFound, connectTrace))
                 return false;
 
@@ -2511,7 +2517,7 @@ bool PreciousBlock(CValidationState& state, const CChainParams& params, CBlockIn
             PruneBlockIndexCandidates();
         }
     }
-
+LogPrintf("preciousblock");
     return ActivateBestChain(state, params);
 }
 
@@ -3194,6 +3200,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
     NotifyHeaderTip();
 
     CValidationState state; // Only used to report errors, not invalidity - ignore it
+LogPrintf("ProcessNewBlock\n");
     if (!ActivateBestChain(state, chainparams, pblock))
         return error("%s: ActivateBestChain failed", __func__);
 
@@ -4005,6 +4012,7 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, CDiskB
                 // Activate the genesis block so normal node progress can continue
                 if (hash == chainparams.GetConsensus().hashGenesisBlock) {
                     CValidationState state;
+LogPrintf("loadexternalblock");
                     if (!ActivateBestChain(state, chainparams)) {
                         break;
                     }

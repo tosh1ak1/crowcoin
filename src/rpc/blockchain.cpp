@@ -957,8 +957,8 @@ UniValue gettxout(const JSONRPCRequest& request)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of litecoin addresses\n"
-            "        \"address\"     (string) litecoin address\n"
+            "     \"addresses\" : [          (array of string) array of crowcoin addresses\n"
+            "        \"address\"     (string) crowcoin address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"
@@ -1417,7 +1417,7 @@ UniValue invalidateblock(const JSONRPCRequest& request)
         CBlockIndex* pblockindex = mapBlockIndex[hash];
         InvalidateBlock(state, Params(), pblockindex);
     }
-
+//LogPrintf("invalidateBlock\n");
     if (state.IsValid()) {
         ActivateBestChain(state, Params());
     }
@@ -1455,7 +1455,7 @@ UniValue reconsiderblock(const JSONRPCRequest& request)
         CBlockIndex* pblockindex = mapBlockIndex[hash];
         ResetBlockFailureFlags(pblockindex);
     }
-
+//LogPrintf("reconsiderblock\n");
     CValidationState state;
     ActivateBestChain(state, Params());
 

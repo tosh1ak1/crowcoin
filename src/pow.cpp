@@ -95,14 +95,18 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
     arith_uint256 bnTarget;
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
-
+LogPrintf("checkproofwork if\n");
     // Check range
-    if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit))
+    if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit)){
+LogPrintf("check range false\n");
         return false;
+}
 
     // Check proof of work matches claimed amount
-    if (UintToArith256(hash) > bnTarget)
+    if (UintToArith256(hash) > bnTarget){
+LogPrintf("check matches claimed amount pow.cpp107\nhash=%s\nbnTarget=%s\nnbits=%d\n",UintToArith256(hash).ToString(),bnTarget.ToString(),nBits);
         return false;
-
+	//return true;
+}
     return true;
 }

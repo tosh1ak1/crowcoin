@@ -4,6 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "chain.h"
+#include "util.h"
 
 /**
  * CChain implementation
@@ -82,7 +83,9 @@ int static inline GetSkipHeight(int height) {
 
 CBlockIndex* CBlockIndex::GetAncestor(int height)
 {
+//LogPrintf("getancestor height=%d nheight=%d\n",height,nHeight);
     if (height > nHeight || height < 0)
+//LogPrintf("returnNULL\n");
         return nullptr;
 
     CBlockIndex* pindexWalk = this;
@@ -103,6 +106,7 @@ CBlockIndex* CBlockIndex::GetAncestor(int height)
             heightWalk--;
         }
     }
+LogPrintf("return pixndexwalk\n");
     return pindexWalk;
 }
 

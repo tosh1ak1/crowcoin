@@ -1605,6 +1605,7 @@ int64_t CWallet::RescanFromTime(int64_t startTime, bool update)
  */
 CBlockIndex* CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
 {
+//LogPrintf("scan for wallet transactions\n");
     int64_t nNow = GetTime();
     const CChainParams& chainParams = Params();
 

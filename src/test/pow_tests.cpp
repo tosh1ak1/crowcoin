@@ -29,10 +29,11 @@ BOOST_AUTO_TEST_CASE(get_next_work)
 BOOST_AUTO_TEST_CASE(get_next_work_pow_limit)
 {
     const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1317972665; // Block #0
+//    int64_t nLastRetargetTime = 1317972665; // Block #0
+	int64_t nLastRetargetTime=1514732400;
     CBlockIndex pindexLast;
-    pindexLast.nHeight = 2015;
-    pindexLast.nTime = 1318480354;  // Block #2015
+    pindexLast.nHeight = 0;//2015;
+    pindexLast.nTime = 1514732400;//1318480354;  // Block #2015
     pindexLast.nBits = 0x1e0ffff0;
     BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1e0fffff);
 }
