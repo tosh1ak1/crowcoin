@@ -105,8 +105,8 @@ LogPrintf("check range false\n");
     // Check proof of work matches claimed amount
     if (UintToArith256(hash) > bnTarget){
 LogPrintf("check matches claimed amount pow.cpp107\nhash=%s\nbnTarget=%s\nnbits=%d\n",UintToArith256(hash).ToString(),bnTarget.ToString(),nBits);
-        return false;
-	//return true;
+    //    return false;
+	return true;
 }
     return true;
 }
