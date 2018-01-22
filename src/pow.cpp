@@ -102,7 +102,7 @@ LogPrintf("check range false\n");
         return false;
 }
 
-LogPrintf("check genesis\n");
+LogPrintf("check genesis hash=%d\n",hash.ToString());
     if(UintToArith256(hash)==arith_uint256("12ffa5c3830e11a3d0ed659cf9277be157901f33ccba364351902a7d5963840c")){
 LogPrintf("OK!\n");
       return true;
