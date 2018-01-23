@@ -239,7 +239,7 @@ uint32_t arith_uint256::GetCompact(bool fNegative) const
         nCompact >>= 8;
         nSize++;
     }
-    //assert((nCompact & ~0x007fffff) == 0);
+    assert((nCompact & ~0x007fffff) == 0);
     assert(nSize < 256);
     nCompact |= nSize << 24;
     nCompact |= (fNegative && (nCompact & 0x007fffff) ? 0x00800000 : 0);
