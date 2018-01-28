@@ -79,8 +79,8 @@ public:
         consensus.BIP34Hash = uint256S("0"); //uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf")
         consensus.BIP65Height = -1;//918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
         consensus.BIP66Height = -1;//811879; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
-        //consensus.powLimit = uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
+        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+//consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 1.0 * 24 * 60 * 60; // 3.5 days to 1days
         consensus.nPowTargetSpacing = 1.0 * 60; //1 minuits
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -173,10 +173,10 @@ consensus.powLimit = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffff
 
         chainTxData = ChainTxData{
             // Data as of block db42d00d824950a125f9b08b6b6c282c484781562fa8b3bd29d6ce4a2627c348 (height 1259851).
-            1514732400,//1502955334, // * UNIX timestamp of last known number of transactions
+            0,//1514732400,//1502955334, // * UNIX timestamp of last known number of transactions
             0,//11428845,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
-            0.01//0.06     // * estimated number of transactions per second after that timestamp
+            0//0.06     // * estimated number of transactions per second after that timestamp
         };
     }
 };
@@ -262,9 +262,9 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block 3351b6229da00b47ad7a8d7e1323b0e2874744b5296e3d6448293463ab758624 (height 153489)
-            1502953751,
-            382986,
-            0.01
+            0,//1502953751,
+            0,//382986,
+            0//0.01
         };
 
     }
@@ -328,7 +328,7 @@ genesis = CreateGenesisBlock(1514732400, 2084524493, 0x1e0ffff0, 1, 9.51 * COIN)
 
         fDefaultConsistencyChecks = true;
         fRequireStandard = false;
-        fMineBlocksOnDemand = true; 
+        fMineBlocksOnDemand = true;
 
         checkpointData = (CCheckpointData) {
             {
