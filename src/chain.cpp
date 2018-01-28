@@ -106,7 +106,7 @@ CBlockIndex* CBlockIndex::GetAncestor(int height)
             heightWalk--;
         }
     }
-LogPrintf("return pixndexwalk\n");
+//LogPrintf("return pixndexwalk\n");
     return pindexWalk;
 }
 

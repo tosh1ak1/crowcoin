@@ -2333,13 +2333,14 @@ static bool ActivateBestChainStep(CValidationState& state, const CChainParams& c
     std::vector<CBlockIndex*> vpindexToConnect;
     bool fContinue = true;
     int nHeight = pindexFork ? pindexFork->nHeight : -1;
+  LogPrintf("nHeight=%d pindexFork=%d",nHeight,pindexFork);
     while (fContinue && nHeight != pindexMostWork->nHeight) {
         // Don't iterate the entire list of potential improvements toward the best tip, as we likely only need
         // a few blocks along the way.
         int nTargetHeight = std::min(nHeight + 32, pindexMostWork->nHeight);
         vpindexToConnect.clear();
         vpindexToConnect.reserve(nTargetHeight - nHeight);
-LogPrintf("ABCS getancestor nTargetHeight=%d\n",nTargetHeight);
+LogPrintf("ABCS validation.cpp 2342 getancestor nTargetHeight=%d\n",nTargetHeight);
         CBlockIndex *pindexIter = pindexMostWork->GetAncestor(nTargetHeight);
         while (pindexIter && pindexIter->nHeight != nHeight) {
             vpindexToConnect.push_back(pindexIter);
