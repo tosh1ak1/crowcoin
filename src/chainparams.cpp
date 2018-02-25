@@ -75,8 +75,8 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 1576800; //3years
-        consensus.BIP34Height = -1;//710000;
-        consensus.BIP34Hash = uint256S("0"); //uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf")
+        consensus.BIP34Height = 0;//710000;
+        consensus.BIP34Hash = uint256S("8e0d551e5b8cd440cc04b5fac4d80bbe67142b8a14d3a21e8207d64f2b9ef21c"); //uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf")
         consensus.BIP65Height = -1;//918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
         consensus.BIP66Height = -1;//811879; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
         //consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -170,7 +170,7 @@ public:
                 {638902, uint256S("0x15238656e8ec63d28de29a8c75fcf3a5819afc953dcd9cc45cecc53baec74f38")},
                 {721000, uint256S("0x198a7b4de1df9478e2463bd99d75b714eab235a2e63e741641dc8a759a9840e5")},
             */
-				//	{0,uint256S("0x8e0d551e5b8cd440cc04b5fac4d80bbe67142b8a14d3a21e8207d64f2b9ef21c")}
+					{0,uint256S("0x8e0d551e5b8cd440cc04b5fac4d80bbe67142b8a14d3a21e8207d64f2b9ef21c")}
 			}
         };
 
