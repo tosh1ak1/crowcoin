@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Litecoin"
-            VALUE "FileDescription",    "crowcoin-tx (CLI Litecoin transaction editor utility)"
+            VALUE "CompanyName",        "Crowcoin"
+            VALUE "FileDescription",    "crowcoin-tx (CLI Crowcoin transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "crowcoin-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

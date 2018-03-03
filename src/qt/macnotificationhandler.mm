@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.crowcoin.Litecoin-Qt";
+        return @"org.crowcoin.Crowcoin-Qt";
     } else {
         return [self __bundleIdentifier];
     }
