@@ -427,7 +427,7 @@
     </message>
     <message>
         <source>Open a crowcoin: URI or payment request</source>
-        <translation>ビットコインのURIまたは支払要求を開く</translation>
+        <translation>ビットコインのURIまたは支払い手続きを開く</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -817,7 +817,7 @@
     </message>
     <message>
         <source>Set SSL root certificates for payment request (default: -system-)</source>
-        <translation>支払要求のSSLルート証明の設定 (デフォルト: -システム-)</translation>
+        <translation>支払い手続きのSSLルート証明の設定 (デフォルト: -システム-)</translation>
     </message>
     <message>
         <source>Show splash screen on startup (default: %u)</source>
@@ -918,7 +918,7 @@
     </message>
     <message>
         <source>Open payment request from URI or file</source>
-        <translation>URLもしくはファイルからの支払い要求を開く</translation>
+        <translation>URLもしくはファイルからの支払い手続きを開く</translation>
     </message>
     <message>
         <source>URI:</source>
@@ -926,11 +926,11 @@
     </message>
     <message>
         <source>Select payment request file</source>
-        <translation>支払い要求ファイルの選択</translation>
+        <translation>支払い手続きファイルの選択</translation>
     </message>
     <message>
         <source>Select payment request file to open</source>
-        <translation>開く支払い要求ファイルを選択</translation>
+        <translation>開く支払い手続きファイルを選択</translation>
     </message>
 </context>
 <context>
@@ -1188,7 +1188,7 @@
     </message>
     <message>
         <source>Pending:</source>
-        <translation>未決定:</translation>
+        <translation>未承認:</translation>
     </message>
     <message>
         <source>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</source>
@@ -1243,7 +1243,7 @@
     <name>PaymentServer</name>
     <message>
         <source>Payment request error</source>
-        <translation>支払い要求エラー</translation>
+        <translation>支払い手続きエラー</translation>
     </message>
     <message>
         <source>Cannot start crowcoin: click-to-pay handler</source>
@@ -1255,7 +1255,7 @@
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
-        <translation>取得した支払要求は無効です: %1</translation>
+        <translation>取得した支払い手続きは無効です: %1</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
@@ -1267,35 +1267,35 @@
     </message>
     <message>
         <source>Payment request file handling</source>
-        <translation>支払要求ファイル操作</translation>
+        <translation>支払い手続きファイル操作</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>支払要求ファイルが読み込めませんでした! 支払要求ファイルが無効である可能性があります。</translation>
+        <translation>支払い手続きファイルが読み込めませんでした! 支払い手続きファイルが無効である可能性があります。</translation>
     </message>
     <message>
         <source>Payment request rejected</source>
-        <translation>支払要求却下</translation>
+        <translation>支払い手続き却下</translation>
     </message>
     <message>
         <source>Payment request network doesn't match client network.</source>
-        <translation>支払要求ネットワークはクライアントネットワークと一致しませんでした。</translation>
+        <translation>支払い手続きネットワークはクライアントネットワークと一致しませんでした。</translation>
     </message>
     <message>
         <source>Payment request expired.</source>
-        <translation>支払要求期限切れ</translation>
+        <translation>支払い手続き期限切れ</translation>
     </message>
     <message>
         <source>Payment request is not initialized.</source>
-        <translation>支払要求は初期化されていません。</translation>
+        <translation>支払い手続きは初期化されていません。</translation>
     </message>
     <message>
         <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>カスタム支払スクリプトへの未検証の支払要求は、サポートされていません。</translation>
+        <translation>カスタム支払スクリプトへの未検証の支払い手続きは、サポートされていません。</translation>
     </message>
     <message>
         <source>Invalid payment request.</source>
-        <translation>無効な支払要求:</translation>
+        <translation>無効な支払い手続き:</translation>
     </message>
     <message>
         <source>Requested payment amount of %1 is too small (considered dust).</source>
@@ -1307,7 +1307,7 @@
     </message>
     <message>
         <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>支払要求 %1 は大きすぎます (%2 バイト, %3 バイトまで許可).</translation>
+        <translation>支払い手続き %1 は大きすぎます (%2 バイト, %3 バイトまで許可).</translation>
     </message>
     <message>
         <source>Error communicating with %1: %2</source>
@@ -1315,7 +1315,7 @@
     </message>
     <message>
         <source>Payment request cannot be parsed!</source>
-        <translation>支払要求は解析できませんでした!</translation>
+        <translation>支払い手続きは解析できませんでした!</translation>
     </message>
     <message>
         <source>Bad response from server %1</source>
@@ -1737,15 +1737,15 @@
     </message>
     <message>
         <source>Reuse one of the previously used receiving addresses. Reusing addresses has security and privacy issues. Do not use this unless re-generating a payment request made before.</source>
-        <translation>前回使用された受信アドレスを再利用します。再度アドレスを使用することは、セキュリティとプライバシーの問題になります。再度支払要求を事前に再生成しない限り、これを使用しないようにしてください。</translation>
+        <translation>前回使用された受信アドレスを再利用します。再度アドレスを使用することは、セキュリティとプライバシーの問題になります。再度支払い手続きを事前に再生成しない限り、これを使用しないようにしてください。</translation>
     </message>
     <message>
         <source>R&amp;euse an existing receiving address (not recommended)</source>
-        <translation>&amp;再度存在している受信アドレスを死闘する(非推奨)</translation>
+        <translation>&amp;存在している受信アドレスを削除する(非推奨)</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Crowcoin network.</source>
-        <translation>支払要求に添付されたオプションメッセージは、要求を開いたときに表示されます。メモ: メッセージは、ビットコインネットワーク上で支払と一緒に送信されません。</translation>
+        <translation>支払い手続きに添付されたオプションメッセージは、要求を開いたときに表示されます。メモ: メッセージは、ビットコインネットワーク上で支払と一緒に送信されません。</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1753,7 +1753,7 @@
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
-        <translation>支払要求のための形式を使用してください。すべてのフィールドは&lt;b&gt;おプション&lt;/b&gt; です。</translation>
+        <translation>受信手続きのための形式を使用してください。すべてのフィールドは&lt;b&gt;オプション&lt;/b&gt; です。</translation>
     </message>
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
@@ -1769,15 +1769,15 @@
     </message>
     <message>
         <source>Requested payments history</source>
-        <translation>支払要求履歴</translation>
+        <translation>受信手続き履歴</translation>
     </message>
     <message>
         <source>&amp;Request payment</source>
-        <translation>&amp;支払要求</translation>
+        <translation>&amp;受信手続き</translation>
     </message>
     <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
-        <translation>選択された要求の表示。(空をダブルクリックしたときと同じ)</translation>
+        <translation>選択された手続きの表示。(空をダブルクリックしたときと同じ)</translation>
     </message>
     <message>
         <source>Show</source>
@@ -1828,7 +1828,7 @@
     </message>
     <message>
         <source>Request payment to %1</source>
-        <translation>%1のための支払要求</translation>
+        <translation>%1のための支払い手続き</translation>
     </message>
     <message>
         <source>Payment information</source>
@@ -2114,7 +2114,7 @@
     </message>
     <message>
         <source>Payment request expired.</source>
-        <translation>支払要求期限切れ</translation>
+        <translation>支払い手続き期限切れ</translation>
     </message>
     <message>
         <source>Pay only the required fee of %1</source>
@@ -2197,11 +2197,11 @@
     </message>
     <message>
         <source>This is an unauthenticated payment request.</source>
-        <translation>これは未証明の支払要求です。</translation>
+        <translation>これは未証明の支払い手続きです。</translation>
     </message>
     <message>
         <source>This is an authenticated payment request.</source>
-        <translation>これは証明済みの支払要求です。</translation>
+        <translation>これは証明済みの支払い手続きです。</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
